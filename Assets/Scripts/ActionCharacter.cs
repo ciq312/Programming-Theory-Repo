@@ -13,7 +13,9 @@ public class ActionCharacter : MonoBehaviour
         get => _HP;
         protected set
         {
+            _HP = value >= MaxHP ? MaxHP : value; // if HP more than MaxHP set MaxHP
             _HP = value <= 0 ? 0 : value; // HP couldn't be less than zero
+            UpdateHPBar();
         }
     }
     private void OnValidate()
@@ -32,8 +34,7 @@ public class ActionCharacter : MonoBehaviour
     
     public virtual void Hit(int damage)
     {
-        HP -= damage;
-        UpdateHPBar();
+        HP -= damage; 
         if (HP == 0)
             Dead();
     }

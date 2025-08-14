@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 981733961723097917}
   - component: {fileID: 8618362590962194846}
   - component: {fileID: 4049686399625348275}
-  - component: {fileID: 2794269685403213270}
+  - component: {fileID: 2437479082200043642}
   m_Layer: 0
   m_Name: ArcherEnemy
   m_TagString: Enemy
@@ -132,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 7105062223114567318}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.68, y: -1.5, z: 9.766}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -240,7 +240,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2794269685403213270
+--- !u!114 &2437479082200043642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,14 +249,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7105062223114567318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ad07ea585393340b75ac938af1bfb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 73b75ff4b16c9654392dc84a7e29b34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 0
+  MaxHP: 100
   _HP: 100
-  damage: 20
   HPBar: {fileID: 8857241491659621325}
+  damage: 30
+  reloadTime: 2
+  canShoot: 1
   moveSpeed: 2
+  attackRange: 15
+  scoreForEnemy: 30
+  projectile: {fileID: 7835574970095165453, guid: 37f01a9a99c64b14da245df4fc72b7da, type: 3}
 --- !u!1 &7479942857176860656
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +410,6 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1

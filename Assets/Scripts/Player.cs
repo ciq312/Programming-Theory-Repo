@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,11 +12,16 @@ public class Player : ActionCharacter
     [SerializeField] private GameObject fireMarkerPoint;
     
     [SerializeField] private GameObject projectilePrefab;
+
+    [SerializeField] private int HPToHeal;
     
     void Update()
     {
-        Move();
-        Boundaries();
+        if (GameManager.instance.gameIsProccessing)
+        {
+            Move();
+            Boundaries();
+        }
     }
 
     private void Move()
@@ -36,13 +42,24 @@ public class Player : ActionCharacter
 
     void OnShoot(InputValue value)
     {
-        if (canShoot)
+        if (canShoot && GameManager.instance.gameIsProccessing)
         {
             var projectile = Instantiate(projectilePrefab, fireMarkerPoint.transform.position, projectilePrefab.transform.rotation);
             projectile.GetComponent<Projectile>().direction = (fireMarkerPoint.transform.position - transform.position).normalized;
             projectile.GetComponent<Projectile>().ShootTheProjectile();
             StartCoroutine(Reload());
         }
+    }
+
+    protected override void Dead()
+    {
+        GameManager.instance.gameIsProccessing = false;
+        SceneManager.LoadScene(2);
+    }
+
+    public void Heal()
+    {
+        HP += HPToHeal;
     }
 
 }
